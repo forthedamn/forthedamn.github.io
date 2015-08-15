@@ -68,7 +68,7 @@
 	      return React.createElement(AppBar, {
 	         title: 'Xin',
 	         //iconClassNameRight="muidocs-icon-navigation-expand-more"
-	         iconElementRight: React.createElement(FontIcon, { className: 'muidocs-icon-action-home' })
+	         iconElementRight: React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'GitHub' })
 	      });
 	   }
 	});
