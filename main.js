@@ -52,25 +52,66 @@
 	    AppBar = mui.AppBar,
 	    FontIcon = mui.FontIcon,
 	    IconButton = mui.IconButton;
+	var Card = mui.Card,
+	    CardHeader = mui.CardHeader,
+	    CardMedia = mui.CardMedia,
+	    CardTitle = mui.CardTitle,
+	    CardActions = mui.CardActions,
+	    CardText = mui.CardText,
+	    FlatButton = mui.FlatButton,
+	    Avatar = mui.Avatar;
 
 	var MyCard = React.createClass({
-	   displayName: 'MyCard',
+	  displayName: 'MyCard',
 
-	   childContextTypes: {
-	      muiTheme: React.PropTypes.object
-	   },
-	   getChildContext: function getChildContext() {
-	      return {
-	         muiTheme: ThemeManager.getCurrentTheme()
-	      };
-	   },
-	   render: function render() {
-	      return React.createElement(AppBar, {
-	         title: 'Xin',
-	         //iconClassNameRight="muidocs-icon-navigation-expand-more"
-	         iconElementRight: React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'GitHub' })
-	      });
-	   }
+	  childContextTypes: {
+	    muiTheme: React.PropTypes.object
+	  },
+	  getChildContext: function getChildContext() {
+	    return {
+	      muiTheme: ThemeManager.getCurrentTheme()
+	    };
+	  },
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(AppBar, {
+	        title: 'Xin',
+	        //iconClassNameRight="muidocs-icon-navigation-expand-more"
+	        iconElementRight: React.createElement(IconButton, { iconClassName: 'muidocs-icon-custom-github', tooltip: 'GitHub' }),
+	        style: { position: "fixed", top: "0" }
+	      }),
+	      React.createElement(
+	        Card,
+	        { style: { width: "50%", margin: "80px auto", position: "relative" } },
+	        React.createElement(CardHeader, {
+	          title: 'first article coming to boom!',
+	          subtitle: 'start to write',
+	          avatar: React.createElement(
+	            Avatar,
+	            null,
+	            'Xin'
+	          ) }),
+	        React.createElement(
+	          CardMedia,
+	          { overlay: React.createElement(CardTitle, { title: 'Title', subtitle: 'Subtitle' }) },
+	          React.createElement('img', { src: 'http://lorempixel.com/600/337/nature/' })
+	        ),
+	        React.createElement(CardTitle, { title: 'Title', subtitle: 'Subtitle' }),
+	        React.createElement(
+	          CardActions,
+	          null,
+	          React.createElement(FlatButton, { label: '评论' })
+	        ),
+	        React.createElement(
+	          CardText,
+	          null,
+	          '还是准备写点东西，做下读书笔记'
+	        )
+	      )
+	    );
+	  }
 	});
 	React.render(React.createElement(MyCard, null), document.getElementById('main'));
 
