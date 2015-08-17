@@ -1,5 +1,6 @@
 var React = require('react');
-var mui = require('material-ui'),
+var mui = require('material-ui');
+var injectTapEventPlugin = require("react-tap-event-plugin"),
 ThemeManager = new mui.Styles.ThemeManager(),
 AppBar = mui.AppBar,
 FontIcon = mui.FontIcon,
@@ -11,9 +12,13 @@ CardTitle = mui.CardTitle,
 CardActions = mui.CardActions,
 CardText = mui.CardText,
 FlatButton = mui.FlatButton,
-Avatar = mui.Avatar;
+Avatar = mui.Avatar,
+LeftNav = mui.LeftNav;
+var MyCardCollection = require('./MyCardCollection.jsx');
 
-var MyCard = React.createClass({
+injectTapEventPlugin();
+
+var MyPage = React.createClass({
     childContextTypes: {
        muiTheme: React.PropTypes.object
     },
@@ -22,33 +27,42 @@ var MyCard = React.createClass({
          muiTheme: ThemeManager.getCurrentTheme()
        };
     },
+    /**
+     * app bar lefticon click hanlder
+     */
+    onLeftIconButtonClickHandler: function() {
+      this.refs.leftNav.open();
+    },
+    /**
+     * leftNavOnChangeHandler
+     * @param  {object} e       uiEvent
+     * @param  {number} key    the key of items
+     * @param  {object} payload 传入的对象
+     */
+    leftNavOnChangeHandler: function(e, key, payload) {
+      debugger;
+    },
     render: function() {
+      // 用于leftNav 填充选项
+      var menuItems = [
+        { route: 'get-started', text: 'Get Started' },
+        { route: 'customization', text: 'Customization' },
+        { route: 'components', text: 'Components' }
+      ];
+      /**
+       * <leftNav>
+       * menuItems 其实是一个<Menu/> 组件，这里面的内容事件通过 onChange 监听到
+       */
        return (
-        <div>
-           <AppBar
-                title="Xin"
-                //iconClassNameRight="muidocs-icon-navigation-expand-more"
-                iconElementRight={<IconButton iconClassName="muidocs-icon-custom-github" tooltip="GitHub"/>}
-                style={{position:"fixed",top:"0"}}
-                />
-            <Card style={{width:"50%",margin:"80px auto",position:"relative"}}>
-               <CardHeader
-                 title="first article coming to boom!"
-                 subtitle="start to write"
-                 avatar={<Avatar>Xin</Avatar>}/>
-               <CardMedia overlay={<CardTitle title="Title" subtitle="Subtitle"/>}>
-                 <img src="http://lorempixel.com/600/337/nature/"/>
-               </CardMedia>
-               <CardTitle title="Title" subtitle="Subtitle"/>
-               <CardActions>
-                 <FlatButton label="评论"/>
-               </CardActions>
-               <CardText>
-                 还是准备写点东西，做下读书笔记
-               </CardText>
-             </Card>
+        <div onClick={this.clickHandler}>
+            <AppBar
+              title="Xin's blog"
+              style={{position: "fixed",top: 0}}
+              onLeftIconButtonTouchTap = {this.onLeftIconButtonClickHandler} />
+            <LeftNav ref="leftNav" docked={false} menuItems={menuItems} onChange={this.leftNavOnChangeHandler}/>
+            <MyCardCollection />
         </div>
        );
     }
 });
-React.render(<MyCard />,document.getElementById('main'));
+React.render(<MyPage />,document.getElementById('main'));

@@ -51,7 +51,7 @@ var MyCard = React.createClass({
     },
     render: function() {
        return (
-            <Card style={{width:"50%",margin:"80px auto",position:"relative"}}>
+            <Card style={{width:"50%",margin:"70px auto",position:"relative"}}>
               <CardHeader
                  title={this.state.cardTitle}
                  subtitle={this.state.cardSubtitle}
