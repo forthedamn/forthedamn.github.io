@@ -56,8 +56,8 @@ var MyPage = React.createClass({
        return (
         <div onClick={this.clickHandler}>
             <AppBar
-              title="Xin's blog"
-              style={{position: "fixed",top: 0}}
+              title={<Avatar>Xin</Avatar>}
+              style={{position: "fixed",top: 0,height: '200px','background-image':'url(http://lorempixel.com/600/337/nature/) no-repeat'}}
               onLeftIconButtonTouchTap = {this.onLeftIconButtonClickHandler} />
             <LeftNav ref="leftNav" docked={false} menuItems={menuItems} onChange={this.leftNavOnChangeHandler}/>
             <MyCardCollection />
