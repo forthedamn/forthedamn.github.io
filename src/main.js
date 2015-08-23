@@ -15,17 +15,29 @@ FlatButton = mui.FlatButton,
 Avatar = mui.Avatar,
 LeftNav = mui.LeftNav;
 var MyCardCollection = require('./MyCardCollection.jsx');
+var MyAppBar = require('./MyAppBar.jsx');
 
 injectTapEventPlugin();
 
 var MyPage = React.createClass({
+    /**
+     * material－ui 必须有的方法
+     * @type {Object}
+     */
     childContextTypes: {
        muiTheme: React.PropTypes.object
     },
-    getChildContext: function() {
+    /**
+     * material－ui 必须有的方法
+     * @type {Object}
+     */
+    getChildContext: function () {
        return {
          muiTheme: ThemeManager.getCurrentTheme()
        };
+    },
+    componentDidMount: function () {
+
     },
     /**
      * app bar lefticon click hanlder
@@ -34,7 +46,7 @@ var MyPage = React.createClass({
       this.refs.leftNav.open();
     },
     /**
-     * leftNavOnChangeHandler
+     * leftNav点击事件回调函数
      * @param  {object} e       uiEvent
      * @param  {number} key    the key of items
      * @param  {object} payload 传入的对象
@@ -45,9 +57,9 @@ var MyPage = React.createClass({
     render: function() {
       // 用于leftNav 填充选项
       var menuItems = [
-        { route: 'get-started', text: 'Get Started' },
-        { route: 'customization', text: 'Customization' },
-        { route: 'components', text: 'Components' }
+        { route: 'Get Started', text: '是写东西呢' },
+        { route: 'Customization', text: '还是继续做东西' },
+        { route: 'Components', text: '。。' }
       ];
       /**
        * <leftNav>
@@ -55,10 +67,7 @@ var MyPage = React.createClass({
        */
        return (
         <div onClick={this.clickHandler}>
-            <AppBar
-              title={<Avatar>Xin</Avatar>}
-              style={{position: "fixed",top: 0,height: '200px','background-image':'url(http://lorempixel.com/600/337/nature/) no-repeat'}}
-              onLeftIconButtonTouchTap = {this.onLeftIconButtonClickHandler} />
+            <MyAppBar ref='appBarTitle' onLeftIconButtonClickHandler={this.onLeftIconButtonClickHandler}/>
             <LeftNav ref="leftNav" docked={false} menuItems={menuItems} onChange={this.leftNavOnChangeHandler}/>
             <MyCardCollection />
         </div>
