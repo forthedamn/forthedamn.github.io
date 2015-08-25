@@ -63,7 +63,7 @@
 	    Avatar = mui.Avatar,
 	    LeftNav = mui.LeftNav;
 	var MyCardCollection = __webpack_require__(318);
-	var MyAppBar = __webpack_require__(323);
+	var MyAppBar = __webpack_require__(319);
 
 	injectTapEventPlugin();
 
@@ -38548,9 +38548,9 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
-	var MyCard = __webpack_require__(319);
+	var MyCard = __webpack_require__(322);
 	var mui = __webpack_require__(157),
-	    pagePackage = __webpack_require__(322),
+	    pagePackage = __webpack_require__(323),
 	    FlatButton = mui.FlatButton,
 	    ThemeManager = new mui.Styles.ThemeManager();
 
@@ -38569,9 +38569,16 @@
 	    }
 	    return {
 	      end: 3,
-	      disabled: disabled
+	      disabled: disabled,
+	      // 该collection控件显示状态
+	      // true: 多page，collection状态
+	      // false: 单页面状态
+	      collectionState: true
 	    };
 	  },
+	  /**
+	   * 显示更多／翻页
+	   */
 	  nextPage: function nextPage() {
 	    var length = pages.length;
 	    var end = this.state.end;
@@ -38580,17 +38587,33 @@
 	      disabled = 'disabled';
 	    }
 	    this.setState({
-	      end: end + 3,
-	      disabled: disabled
+	      end: end + 3, // page数组显示的末端
+	      disabled: disabled // 是否‘显示更多’
+	    });
+	  },
+	  /**
+	   * 阅读全文点击回调
+	   * @param  {string} pagescr page页面html资源名称
+	   */
+	  readMoreClickHandler: function readMoreClickHandler(pagescr) {
+	    this.setState({
+	      collectionState: false,
+	      pageSrc: pagescr
 	    });
 	  },
 	  render: function render() {
+	    var _this = this;
 	    var end = this.state.end;
-	    var display = pages.slice(0, end);
-	    var pageDoms = display.map(function (v) {
-	      return React.createElement(MyCard, { src: v });
+	    // 页面将要显示的page数组
+	    var pageDisplay = pages.slice(0, end);
+	    var pageDoms = pageDisplay.map(function (v) {
+	      return React.createElement(MyCard, { src: v, readMoreClickHandler: _this.readMoreClickHandler });
 	    });
-	    return React.createElement("div", { style: { marginTop: '150px' } }, pageDoms, React.createElement(FlatButton, { style: { margin: '0 auto 30px auto', display: 'block' }, label: "显示更多", disabled: this.state.disabled, onClick: this.nextPage }));
+	    // collection(多页面) single(单页面) 显示方式
+	    var collectionDisplay = this.state.collectionState ? 'block' : 'none';
+	    var singleDisplay = !this.state.collectionState ? 'block' : 'none';
+	    var pageSrc = "../page/" + this.state.pageSrc + ".html";
+	    return React.createElement("div", { style: { marginTop: '150px' } }, React.createElement("div", { style: { display: collectionDisplay } }, pageDoms, React.createElement(FlatButton, { style: { margin: '0 auto 30px auto', display: 'block' }, label: "显示更多", disabled: this.state.disabled, onClick: this.nextPage })), React.createElement("div", { style: { display: singleDisplay } }, React.createElement("iframe", { style: { overflow: 'auto', width: '100%' }, src: pageSrc })));
 	  }
 	});
 	module.exports = MyCardCollection;
@@ -38599,59 +38622,88 @@
 /* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var React = __webpack_require__(1);
 	var $ = __webpack_require__(320);
+	var MyCard = __webpack_require__(322);
 	var mui = __webpack_require__(157),
-	    ThemeManager = new mui.Styles.ThemeManager(),
-	    FontIcon = mui.FontIcon,
-	    IconButton = mui.IconButton,
-	    Card = mui.Card,
-	    CardHeader = mui.CardHeader,
-	    CardMedia = mui.CardMedia,
-	    CardTitle = mui.CardTitle,
-	    CardActions = mui.CardActions,
-	    CardText = mui.CardText,
+	    injectTapEventPlugin = __webpack_require__(314),
 	    FlatButton = mui.FlatButton,
-	    Avatar = mui.Avatar;
+	    AppBar = mui.AppBar,
+	    Avatar = mui.Avatar,
+	    ThemeManager = new mui.Styles.ThemeManager();
 
-	var MyCard = React.createClass({ displayName: "MyCard",
-	  getInitialState: function getInitialState() {
-	    return {
-	      imgTitle: "",
-	      imgSubtitle: "",
-	      imgSrc: "",
-	      cardTitle: "",
-	      cardSubtitle: "",
-	      cardText: ""
-	    };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    var _this = this;
-	    $.ajax("../page/" + _this.props.src + ".json").then(function (data, status, XHR) {
-	      var result = data;
-	      _this.setState({
-	        imgTitle: result.imgTitle,
-	        imgSubtitle: result.imgSubtitle,
-	        imgSrc: result.imgSrc || "http://lorempixel.com/600/337/nature/",
-	        cardTitle: result.cardTitle,
-	        cardSubtitle: result.cardSubtitle,
-	        cardText: result.cardAbstract
-	      });
-	    });
-	  },
-	  clickHanler: function clickHanler() {
-	    alert('');
-	  },
-	  render: function render() {
-	    return React.createElement(Card, { style: { width: "50%", margin: "70px auto", position: "relative" } }, React.createElement(CardHeader, {
-	      title: this.state.cardTitle,
-	      subtitle: this.state.cardSubtitle,
-	      avatar: React.createElement(Avatar, null, "Xin") }), React.createElement(CardMedia, { overlay: React.createElement(CardTitle, { title: this.state.imgTitle, subtitle: this.state.imgSubtitle }) }, React.createElement("img", { src: this.state.imgSrc })), React.createElement(CardText, null, this.state.cardText), React.createElement(CardActions, null, React.createElement(FlatButton, { label: "阅读全文", onClick: this.clickHanler })));
-	  }
+	injectTapEventPlugin();
+
+	var MyAppBar = React.createClass({ displayName: "MyAppBar",
+	    getInitialState: function getInitialState() {
+
+	        return {
+	            // appbar 高度
+	            height: '150px',
+	            // appbar 中的paddingtop
+	            paddingTop: '20px',
+	            // head 长宽
+	            headSize: '90px',
+	            // head postion
+	            headX: '-6px ', // 最后有个空格，为了合法的格式
+	            headY: '34%'
+	            // -23 -3
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        var _this = this;
+	        //debugger;
+	        // 绑定滚动，实现页面顶部appbar自适应变化
+	        $(window).scroll(function (e) {
+	            var scrollHeight = $(this).scrollTop();
+	            // 变换缓慢因子，该因子越大，变换越缓慢
+	            var changeSlowFactor = 300;
+	            // 获得滚动高度比例,下滑逐渐趋于1
+	            var radio = Math.min(scrollHeight / changeSlowFactor, 1);
+	            if (scrollHeight <= changeSlowFactor) {
+	                var height = 50 + 100 * (1 - radio);
+	                var paddingTop = 20 * (1 - radio);
+	                var headSize = 50 + 40 * (1 - radio);
+	                var headX = -20 + 14 * (1 - radio);
+	                var headY = -3 + 37 * (1 - radio);
+	                _this.setState({
+	                    height: height + 'px',
+	                    paddingTop: paddingTop + 'px',
+	                    headSize: headSize + 'px',
+	                    headX: headX + 'px ', //最后有个空格
+	                    headY: headY + '%'
+	                });
+	            }
+	        });
+	        // 实现页面加载成功后，背景的渐进变化
+	        setTimeout(function () {
+	            React.findDOMNode(_this.refs.appbarTitleBg).style.transform = 'scale(1,1)';
+	        }, 0);
+	    },
+	    componentWillUpdate: function componentWillUpdate() {},
+	    onLeftIconButtonClickHandler: function onLeftIconButtonClickHandler() {
+	        this.props.onLeftIconButtonClickHandler();
+	    },
+	    render: function render() {
+	        var height = this.state.height;
+	        var paddingTop = this.state.paddingTop;
+	        var headSize = this.state.headSize;
+	        var headX = this.state.headX;
+	        var headY = this.state.headY;
+	        var onLeftIconButtonClickHandler = this.onLeftIconButtonClickHandler;
+	        return React.createElement("div", { style: { zIndex: '2', position: 'fixed', top: 0, height: height, width: '100%', overflow: 'hidden' } }, React.createElement(AppBar, { ref: "appbarTitle",
+	            title: React.createElement(Avatar, { style: { width: headSize, height: headSize, backgroundImage: 'url(src/images/head.jpg)',
+	                    backgroundPosition: headX + headY, backgroundSize: '110px 110px' } }),
+	            style: { boxShadow: 'none', paddingTop: paddingTop, backgroundColor: 'none', height: height, position: 'relative' },
+	            onLeftIconButtonTouchTap: onLeftIconButtonClickHandler }), React.createElement("div", { ref: "appbarTitleBg", style: { position: 'absolute', top: '0px', height: height,
+	                width: '100%', backgroundImage: 'url(src/images/titlebg.jpg)', backgroundPosition: '0 86%',
+	                transform: 'scale(1.2,1.2)', transition: 'transform 8s' } }));
+	    }
 	});
-	module.exports = MyCard;
+
+	module.exports = MyAppBar;
 
 /***/ },
 /* 320 */
@@ -40568,6 +40620,75 @@
 
 /***/ },
 /* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	var React = __webpack_require__(1);
+	var $ = __webpack_require__(320);
+	var mui = __webpack_require__(157),
+	    ThemeManager = new mui.Styles.ThemeManager(),
+	    FontIcon = mui.FontIcon,
+	    IconButton = mui.IconButton,
+	    Card = mui.Card,
+	    CardHeader = mui.CardHeader,
+	    CardMedia = mui.CardMedia,
+	    CardTitle = mui.CardTitle,
+	    CardActions = mui.CardActions,
+	    CardText = mui.CardText,
+	    FlatButton = mui.FlatButton,
+	    Avatar = mui.Avatar;
+
+	var MyCard = React.createClass({ displayName: "MyCard",
+	  getInitialState: function getInitialState() {
+	    return {
+	      imgTitle: "",
+	      imgSubtitle: "",
+	      cardTitle: "",
+	      cardSubtitle: "",
+	      cardText: ""
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var _this = this;
+	    $.ajax("../page/" + _this.props.src + ".json").then(function (data, status, XHR) {
+	      var result = data;
+	      _this.setState({
+	        imgTitle: result.imgTitle,
+	        imgSubtitle: result.imgSubtitle,
+	        cardTitle: result.cardTitle,
+	        cardSubtitle: result.cardSubtitle,
+	        cardText: result.cardAbstract
+	      });
+	    });
+	  },
+	  /**
+	   * 阅读全文点击事件
+	   */
+	  readMoreClickHandler: function readMoreClickHandler() {
+	    var page = this.props.src;
+	    this.props.readMoreClickHandler(page);
+	  },
+	  render: function render() {
+	    // 判断是否显示media，图片
+	    var hasMedia = this.props.hasMedia;
+	    var mediaNode;
+	    if (hasMedia) {
+	      var imgSrc = this.props.imgSrc || "http://lorempixel.com/600/337/nature/";
+	      mediaNode = (function () {
+	        return React.createElement(CardMedia, { overlay: React.createElement(CardTitle, { title: this.state.imgTitle, subtitle: this.state.imgSubtitle }) }, React.createElement("img", { src: imgSrc }));
+	      })();
+	    }
+	    return React.createElement(Card, { style: { width: "50%", margin: "70px auto", position: "relative" } }, React.createElement(CardHeader, {
+	      title: this.state.cardTitle,
+	      subtitle: this.state.cardSubtitle,
+	      avatar: React.createElement(Avatar, null, "Xin") }), mediaNode, React.createElement(CardText, null, this.state.cardText), React.createElement(CardActions, null, React.createElement(FlatButton, { label: "阅读全文", onClick: this.readMoreClickHandler })));
+	  }
+	});
+	module.exports = MyCard;
+
+/***/ },
+/* 323 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -40576,93 +40697,6 @@
 	    return ['test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test', 'test'];
 	};
 	module.exports = pagePackage;
-
-/***/ },
-/* 323 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var $ = __webpack_require__(320);
-	var MyCard = __webpack_require__(319);
-	var mui = __webpack_require__(157),
-	    injectTapEventPlugin = __webpack_require__(314),
-	    FlatButton = mui.FlatButton,
-	    AppBar = mui.AppBar,
-	    Avatar = mui.Avatar,
-	    ThemeManager = new mui.Styles.ThemeManager();
-
-	injectTapEventPlugin();
-
-	var MyAppBar = React.createClass({ displayName: "MyAppBar",
-	    getInitialState: function getInitialState() {
-
-	        return {
-	            // appbar 高度
-	            height: '150px',
-	            // appbar 中的paddingtop
-	            paddingTop: '20px',
-	            // head 长宽
-	            headSize: '90px',
-	            // head postion
-	            headX: '-6px ', // 最后有个空格，为了合法的格式
-	            headY: '34%'
-	            // -23 -3
-	        };
-	    },
-	    componentDidMount: function componentDidMount() {
-	        var _this = this;
-	        //debugger;
-	        // 绑定滚动，实现页面顶部appbar自适应变化
-	        $(window).scroll(function (e) {
-	            var scrollHeight = $(this).scrollTop();
-	            // 变换缓慢因子，该因子越大，变换越缓慢
-	            var changeSlowFactor = 300;
-	            // 获得滚动高度比例,下滑逐渐趋于1
-	            var radio = Math.min(scrollHeight / changeSlowFactor, 1);
-	            if (scrollHeight <= changeSlowFactor) {
-	                var height = 50 + 100 * (1 - radio);
-	                var paddingTop = 20 * (1 - radio);
-	                var headSize = 50 + 40 * (1 - radio);
-	                var headX = -20 + 14 * (1 - radio);
-	                var headY = -3 + 37 * (1 - radio);
-	                _this.setState({
-	                    height: height + 'px',
-	                    paddingTop: paddingTop + 'px',
-	                    headSize: headSize + 'px',
-	                    headX: headX + 'px ', //最后有个空格
-	                    headY: headY + '%'
-	                });
-	            }
-	        });
-	        // 实现页面加载成功后，背景的渐进变化
-	        setTimeout(function () {
-	            React.findDOMNode(_this.refs.appbarTitleBg).style.transform = 'scale(1,1)';
-	        }, 0);
-	    },
-	    componentWillUpdate: function componentWillUpdate() {},
-	    onLeftIconButtonClickHandler: function onLeftIconButtonClickHandler() {
-	        this.props.onLeftIconButtonClickHandler();
-	    },
-	    render: function render() {
-	        var height = this.state.height;
-	        var paddingTop = this.state.paddingTop;
-	        var headSize = this.state.headSize;
-	        var headX = this.state.headX;
-	        var headY = this.state.headY;
-	        var onLeftIconButtonClickHandler = this.onLeftIconButtonClickHandler;
-	        return React.createElement("div", { style: { zIndex: '2', position: 'fixed', top: 0, height: height, width: '100%', overflow: 'hidden' } }, React.createElement(AppBar, { ref: "appbarTitle",
-	            title: React.createElement(Avatar, { style: { width: headSize, height: headSize, backgroundImage: 'url(src/images/head.jpg)',
-	                    backgroundPosition: headX + headY, backgroundSize: '110px 110px' } }),
-	            style: { boxShadow: 'none', paddingTop: paddingTop, backgroundColor: 'none', height: height, position: 'relative' },
-	            onLeftIconButtonTouchTap: onLeftIconButtonClickHandler }), React.createElement("div", { ref: "appbarTitleBg", style: { position: 'absolute', top: '0px', height: height,
-	                width: '100%', backgroundImage: 'url(src/images/titlebg.jpg)', backgroundPosition: '0 86%',
-	                transform: 'scale(1.2,1.2)', transition: 'transform 8s' } }));
-	    }
-	});
-
-	module.exports = MyAppBar;
 
 /***/ }
 /******/ ]);

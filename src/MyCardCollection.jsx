@@ -20,9 +20,16 @@ var MyCardCollection = React.createClass({
       }
       return {
         end: 3,
-        disabled: disabled 
+        disabled: disabled,
+        // 该collection控件显示状态
+        // true: 多page，collection状态
+        // false: 单页面状态
+        collectionState: true 
       }
     },
+    /**
+     * 显示更多／翻页
+     */
     nextPage: function () {
       var length = pages.length;
       var end = this.state.end;
@@ -31,22 +38,43 @@ var MyCardCollection = React.createClass({
         disabled = 'disabled';
       }
       this.setState({
-        end: end+3,
-        disabled: disabled
+        end: end+3, // page数组显示的末端
+        disabled: disabled// 是否‘显示更多’
       })
     },
+    /**
+     * 阅读全文点击回调
+     * @param  {string} pagescr page页面html资源名称
+     */
+    readMoreClickHandler: function (pagescr) {
+      this.setState({
+        collectionState: false,
+        pageSrc: pagescr
+      });
+    },
     render: function() {
+      var _this = this;
       var end = this.state.end;
-      var display = pages.slice(0, end);
-      var pageDoms = display.map(function(v) {
+      // 页面将要显示的page数组
+      var pageDisplay = pages.slice(0, end);
+      var pageDoms = pageDisplay.map(function(v) {
         return (
-            <MyCard src={v} />
+            <MyCard src={v} readMoreClickHandler={_this.readMoreClickHandler}/>
           )
       });
+      // collection(多页面) single(单页面) 显示方式
+      var collectionDisplay = this.state.collectionState ? 'block' : 'none';
+      var singleDisplay = !this.state.collectionState ? 'block' : 'none';
+      var pageSrc = "../page/" + this.state.pageSrc + ".html";
        return (
           <div style={{marginTop: '150px'}}>
-            {pageDoms}
-            <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' disabled={this.state.disabled} onClick={this.nextPage}/>
+            <div style={{display: collectionDisplay}}>
+              {pageDoms}
+              <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' disabled={this.state.disabled} onClick={this.nextPage}/>
+            </div>
+            <div style={{display: singleDisplay}}>
+              <iframe style={{overflow: 'auto' ,width: '100%'}}src={pageSrc}></iframe>
+            </div>
           </div>
        );
     }
