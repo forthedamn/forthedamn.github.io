@@ -6,7 +6,7 @@ FlatButton = mui.FlatButton,
 ThemeManager = new mui.Styles.ThemeManager();
 
 /**
- * 所有的页面
+ * 所有的页面名字
  * @type {array}
  */
 var pages = pagePackage();
@@ -57,10 +57,12 @@ var MyCardCollection = React.createClass({
       var end = this.state.end;
       // 页面将要显示的page数组
       var pageDisplay = pages.slice(0, end);
-      var pageDoms = pageDisplay.map(function(v) {
-        return (
-            <MyCard src={v} readMoreClickHandler={_this.readMoreClickHandler}/>
-          )
+      var pageDoms = pageDisplay.map(function(v,k) {
+        if (v) {
+          return (
+              <MyCard src={k} name={v} readMoreClickHandler={_this.readMoreClickHandler}/>
+            )
+        };
       });
       // collection(多页面) single(单页面) 显示方式
       var collectionDisplay = this.state.collectionState ? 'block' : 'none';
@@ -71,9 +73,6 @@ var MyCardCollection = React.createClass({
             <div style={{display: collectionDisplay}}>
               {pageDoms}
               <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' disabled={this.state.disabled} onClick={this.nextPage}/>
-            </div>
-            <div style={{display: singleDisplay}}>
-              <iframe style={{overflow: 'auto' ,width: '100%'}}src={pageSrc}></iframe>
             </div>
           </div>
        );

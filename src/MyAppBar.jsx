@@ -42,14 +42,20 @@ var MyAppBar = React.createClass({
                 var headSize = 50 + 40*(1-radio);
                 var headX = -20 + (14*(1-radio));
                 var headY = -3 + 37*(1-radio);
-                _this.setState({
-                    height: height + 'px',
-                    paddingTop: paddingTop + 'px',
-                    headSize: headSize + 'px',
-                    headX: headX + 'px ', //最后有个空格
-                    headY: headY + '%'
-                });
+            }else {
+                height = 50;
+                paddingTop = 0;
+                headSize = 50;
+                headX = -20;
+                headY = -3; 
             }
+            _this.setState({
+                height: height + 'px',
+                paddingTop: paddingTop + 'px',
+                headSize: headSize + 'px',
+                headX: headX + 'px ', //最后有个空格
+                headY: headY + '%'
+            });
         });
         // 实现页面加载成功后，背景的渐进变化
         setTimeout(function () {

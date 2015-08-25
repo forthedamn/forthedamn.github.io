@@ -1,8 +1,10 @@
 module.exports = {
-    entry: './dep/react/react.js',
+    entry: {
+        head: './src/main.jsx'
+    },
     output: {
         path: './',
-        filename: 'react.js'
+        filename: 'main.js'
     },
     module: {
         loaders: [

@@ -1,17 +1,16 @@
 var React = require("react");
 var $ = require("jquery");
-var mui = require("material-ui"),
-ThemeManager = new mui.Styles.ThemeManager(),
-FontIcon = mui.FontIcon,
-IconButton = mui.IconButton,
-Card = mui.Card,
+var mui = require("material-ui");
+var ThemeManager = new mui.Styles.ThemeManager();
+var Card = mui.Card,
 CardHeader = mui.CardHeader,
 CardMedia = mui.CardMedia,
 CardTitle = mui.CardTitle,
 CardActions = mui.CardActions,
 CardText = mui.CardText,
-FlatButton = mui.FlatButton,
 Avatar = mui.Avatar;
+
+var MyLinkButton = require("./MyLinkButton.jsx");
 
 var MyCard = React.createClass({
     getInitialState: function () {
@@ -25,8 +24,9 @@ var MyCard = React.createClass({
     },
     componentDidMount: function () {
       var _this = this;
-      $.ajax("../page/"+_this.props.src+".json").then(function(data,status,XHR){
-        var result = data;
+      var num = this.props.src;
+      $.ajax("../page/pagePackage.json").then(function(data,status,XHR){
+        var result = data[num];
         _this.setState({
           imgTitle: result.imgTitle,
           imgSubtitle: result.imgSubtitle,
@@ -40,8 +40,9 @@ var MyCard = React.createClass({
      * 阅读全文点击事件
      */
     readMoreClickHandler: function () {
-      var page = this.props.src;
-      this.props.readMoreClickHandler(page);
+      var page = this.props.name;
+      window.location = page;
+      //this.props.readMoreClickHandler(page);
     },
     render: function() {
       // 判断是否显示media，图片
@@ -55,6 +56,8 @@ var MyCard = React.createClass({
               </CardMedia>);
             }()
           }
+      // 文件名
+      var htmlName = {htmlName: this.props.name};
        return (
             <Card style={{width:"50%",margin:"70px auto",position:"relative"}}>
               <CardHeader
@@ -66,7 +69,7 @@ var MyCard = React.createClass({
                 {this.state.cardText}
               </CardText>
               <CardActions>
-                <FlatButton label="阅读全文" onClick={this.readMoreClickHandler}/>
+                <MyLinkButton label="阅读全文" location="pages" params={htmlName}/>
               </CardActions>
              </Card>
        );
