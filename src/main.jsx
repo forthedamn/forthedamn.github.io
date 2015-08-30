@@ -62,14 +62,12 @@ var MyPageHead = React.createClass({
      * @param  {object} payload 传入的对象
      */
     leftNavOnChangeHandler: function(e, key, payload) {
-      debugger;
+      window.location.hash = "/pages/"+payload.route;
     },
     render: function () {
         // 用于leftNav 填充选项
         var menuItems = [
-          { route: 'Get Started', text: '是写东西呢' },
-          { route: 'Customization', text: '还是继续做东西' },
-          { route: 'Components', text: '。。' }
+          { route: 'construct', text: '这是一个用react实现的静态博客' }
         ];
         /**
          * <leftNav>
