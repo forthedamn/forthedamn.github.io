@@ -1,0 +1,30 @@
+{
+  "name": "forthedamn.github.io",
+  "version": "1.0.0",
+  "description": "blog for fun",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forthedamn/forthedamn.github.io.git"
+  },
+  "author": "zhongguoxin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/forthedamn/forthedamn.github.io/issues"
+  },
+  "homepage": "https://github.com/forthedamn/forthedamn.github.io",
+  "dependencies": {
+    "jquery": "latest",
+    "react": "latest",
+    "material-ui": "latest",
+    "style-loader": "latest",
+    "css-loader": "latest",
+    "less-loader": "latest",
+    "babel-loader": "latest",
+    "jsx-loader": "latest",
+    "react-router": "latest"
+  }
+}
