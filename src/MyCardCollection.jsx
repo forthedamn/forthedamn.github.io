@@ -72,7 +72,8 @@ var MyCardCollection = React.createClass({
           <div style={{marginTop: '150px'}}>
             <div style={{display: collectionDisplay}}>
               {pageDoms}
-              <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' disabled={this.state.disabled} onClick={this.nextPage}/>
+              <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' 
+                disabled={this.state.disabled} onClick={this.nextPage}/>
             </div>
           </div>
        );

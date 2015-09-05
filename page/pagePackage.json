@@ -1,5 +1,5 @@
 [
-{"cardTitle": "promise小程序","cardSubtitle": "一个promise分部加载的小程序","cardAbstract": "一次一位面试官问，有50张图片，每次获得5张，用promise实现，如何写？"},
+{"cardTitle": "promise小程序","cardSubtitle": "promise学习笔记","cardAbstract": "function getData(l) {if ( !l || l>8)..."},
 {"imgTitle": "随便来张图","imgSubtitle": "...","imgSrc":"","cardTitle": "test title",
 "cardSubtitle": "test title","cardAbstract": "这是这篇文章的摘要"},
 {"imgTitle": "随便来张图","imgSubtitle": "...","imgSrc":"","cardTitle": "test title",

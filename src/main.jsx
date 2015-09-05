@@ -67,8 +67,7 @@ var MyPageHead = React.createClass({
     render: function () {
         // 用于leftNav 填充选项
         var menuItems = [
-          { route: 'construct', text: '这是一个用react实现的静态博客' }
-        ];
+          { route: 'construct', text: '基于react实现的静态博客' } ];
         /**
          * <leftNav>
          * menuItems 其实是一个<Menu/> 组件，这里面的内容事件通过 onChange 监听到

@@ -1014,8 +1014,8 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-</style><title>20150829</title></head><body><article class="markdown-body"><h2 id="promise"><a name="user-content-promise" href="#promise" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一个promise异步连续获取数据的过程</h2>
-<p>可以在chrome浏览器中正常使用</p>
+</style><title>20150829</title></head><body><article class="markdown-body"><h3 id="promise"><a name="user-content-promise" href="#promise" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>一个promise异步连续获取数据的过程</h3>
+<h6 id="1data"><a name="user-content-1data" href="#1data" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>1.每次从data数据中读取数据，模拟异步调用</h6>
 <pre><code>var data = [1,2,3,4,5,6,7,8];
 function getData(l) {
     if ( !l || l&gt;8)return;
@@ -1031,4 +1031,45 @@ function getData(l) {
            getData.call(this,l+2);
         });
 }
+</code></pre>
+<h6 id="2promise"><a name="user-content-2promise" href="#2promise" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>2.多个方法使用promise解决</h6>
+<blockquote>
+<p>这里用到了一个插件，es6-promise,可在npm中下载<code>npm install es6-promise</code><br />
+举几个该插件的好处：<br />
+1.<code>require('es6-promise').Promise</code> 返回一个promise实例<br />
+2.需要一个resolve状态的promise可用 <code>Promise.resolve()</code><br />
+3.提供<code>Promise.all</code>方法</p>
+</blockquote>
+<pre><code>var Promise = require('es6-promise').Promise;
+/**
+ * 这个_promise池存放promise实例
+ * 目的是为了和_callback事件池相对应
+ * 这样_callback每个时间都能被_promise控制
+ */
+var _promise= [];
+var _callback = [test,test,test];
+//下面的resolves，rejects数组存在_promise中的promise实例的resolve和reject
+var resolves = [];
+var rejects = [];
+
+function test() {
+    var number = Math.random();
+    return 'test' + number;
+}
+
+_promise = _callback.map(function(_,i){
+    return new Promise(function(resolve,reject){
+        resolves[i] = resolve;
+        rejects[i] = reject;
+    });
+});
+_callback.map(function(callback,i){
+    Promise.resolve(callback()).then(function(v) {
+        console.log(v);
+        resolves[i](i);
+    })
+}); 
+Promise.all(_promise).then(function(v){
+    console.log('all'+v);
+})
 </code></pre></article></body></html>
