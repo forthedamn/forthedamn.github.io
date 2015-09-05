@@ -109,7 +109,7 @@
 	  },
 	  render: function render() {
 	    // 用于leftNav 填充选项
-	    var menuItems = [{ route: 'construct', text: '这是一个用react实现的静态博客' }];
+	    var menuItems = [{ route: 'construct', text: '基于react实现的静态博客' }];
 	    /**
 	     * <leftNav>
 	     * menuItems 其实是一个<Menu/> 组件，这里面的内容事件通过 onChange 监听到
@@ -23654,7 +23654,8 @@
 	      title: {
 	        color: this.props.titleColor,
 	        display: 'block',
-	        fontSize: 15
+	        fontSize: 17,
+	        fontWeight: 900
 	      },
 	      subtitle: {
 	        color: this.props.subtitleColor,
@@ -42238,7 +42239,8 @@
 	    var collectionDisplay = this.state.collectionState ? 'block' : 'none';
 	    var singleDisplay = !this.state.collectionState ? 'block' : 'none';
 	    var pageSrc = "../page/" + this.state.pageSrc + ".html";
-	    return React.createElement("div", { style: { marginTop: '150px' } }, React.createElement("div", { style: { display: collectionDisplay } }, pageDoms, React.createElement(FlatButton, { style: { margin: '0 auto 30px auto', display: 'block' }, label: "显示更多", disabled: this.state.disabled, onClick: this.nextPage })));
+	    return React.createElement("div", { style: { marginTop: '150px' } }, React.createElement("div", { style: { display: collectionDisplay } }, pageDoms, React.createElement(FlatButton, { style: { margin: '0 auto 30px auto', display: 'block' }, label: "显示更多",
+	      disabled: this.state.disabled, onClick: this.nextPage })));
 	  }
 	});
 	module.exports = MyCardCollection;
