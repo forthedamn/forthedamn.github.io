@@ -10,6 +10,10 @@ ThemeManager = new mui.Styles.ThemeManager();
 injectTapEventPlugin();
 
 var MyLinkButton = React.createClass({
+    propTypes: {
+        label: React.PropTypes.string.isRequired,
+        location: React.PropTypes.string.isRequired
+    },
     render: function () {
         // 按键文字
         var label = this.props.label;

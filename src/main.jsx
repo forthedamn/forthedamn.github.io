@@ -9,10 +9,11 @@ var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
-var MyCardCollection = require('./MyCardCollection.jsx');
-var MyAppBar = require('./MyAppBar.jsx');
-var MyArticle = require('./MyArticle.jsx');
-
+var MyCardCollection = require('./MyCardCollection');
+var MyAppBar = require('./MyAppBar');
+var MyArticle = require('./MyArticle');
+// 目录控件
+var MyDirectory = require('./MyDirectory');
 
 injectTapEventPlugin();
 
@@ -62,12 +63,12 @@ var MyPageHead = React.createClass({
      * @param  {object} payload 传入的对象
      */
     leftNavOnChangeHandler: function(e, key, payload) {
-      window.location.hash = "/pages/"+payload.route;
+      window.location.hash = payload.route;
     },
     render: function () {
         // 用于leftNav 填充选项
         var menuItems = [
-          { route: 'construct', text: '基于react实现的静态博客' } ];
+          { route: 'directory', text: '目录' } ];
         /**
          * <leftNav>
          * menuItems 其实是一个<Menu/> 组件，这里面的内容事件通过 onChange 监听到
@@ -89,7 +90,10 @@ var MyPageHead = React.createClass({
 var routes = (
   <Route name="main" path="/" handler={MyPageHead}>
     <DefaultRoute handler={MyPage}/>
+    {/*htmlName 将会传入handler控件的props.params中*/}
     <Route name="pages" path="/pages/:htmlName?" handler={MyArticle}/>
+    {/*路由控件*/}
+    <Route name="directory" path="/directory" handler={MyDirectory}/>
   </Route>
 );
 
