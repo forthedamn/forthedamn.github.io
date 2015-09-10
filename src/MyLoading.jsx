@@ -11,7 +11,7 @@ var MyLoding = React.createClass({
             width: '200px',
             margin: '0 auto'
         }
-        style.display = this.props.display !== 'loading' ? {display:'none'} : {display:'block'};
+        style.display = this.props.display !== 'loading' ? 'none' : 'block';
         return (
             <div style={style}>
                 <CircularProgress mode="indeterminate" size={2} />

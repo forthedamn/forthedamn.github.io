@@ -22,7 +22,7 @@ var MyArticle = React.createClass({
         $('#articleiFrame').css('height', height+'px');
         this.setState({
             display: 'loaded'
-        }) 
+        }); 
     },
     render: function () {
         var htmlName = this.props.params.htmlName;
@@ -33,14 +33,14 @@ var MyArticle = React.createClass({
                 <Paper zDepth={1} style={{width: '88px'}}>
                     <MyLinkButton location='/' label='< 返回' />
                 </Paper>
+                <MyLoading
+                    display={this.state.display}
+                />
                 <MyArticleContent 
                     iframeOnloadHandler={iframeOnloadHandler} 
                     pageSrc={pageSrc}
                     display={this.state.display}
                     />
-                <MyLoading
-                    display={this.state.display}
-                />
             </Paper>
         )
     }
