@@ -4,7 +4,10 @@ module.exports = {
     },
     output: {
         path: './',
-        filename: 'main.js'
+        filename: 'main.min.js'
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
     },
     module: {
         loaders: [
