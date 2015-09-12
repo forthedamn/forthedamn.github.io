@@ -49,12 +49,21 @@ var MyDirectory = React.createClass({
             listItems = pageAbstract.map(function(data){
                 // 构造闭包，保存htmlName
                 var htmlName = data.htmlName;
+                // 点击回调函数
                 var itemClickHanler = function () {
                     _this.clickHandler.call(this,htmlName);
                 }
+                // 日期格式化，暂时用html文件名作为日期
+                var formatDate = (function(htmlName) {
+                    var year = htmlName.slice(0,4);
+                    var month = htmlName.slice(4,6);
+                    var day = htmlName.slice(6);
+                    return year+'-'+month+'-'+day;
+                })(htmlName);
                 return  function(){
                     return (<ListItem 
                                 primaryText={data.cardTitle}
+                                secondaryText={formatDate}
                                 onClick={itemClickHanler}
                                 {...listItemProps}
                             />);

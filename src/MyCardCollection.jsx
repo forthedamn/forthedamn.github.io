@@ -67,7 +67,7 @@ var MyCardCollection = React.createClass({
         };
       });
        return (
-          <div style={{marginTop: '150px'}}>
+          <div style={{marginTop: '170px'}}>
             <MyLoading display={this.state.load} />
             <div>
               {pageDoms}
