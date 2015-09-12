@@ -9,6 +9,7 @@ var Link = Router.Link;
 var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
+// 页面集合控件
 var MyCardCollection = require('./MyCardCollection');
 var MyAppBar = require('./MyAppBar');
 var MyArticle = require('./MyArticle');
@@ -33,22 +34,9 @@ var childrenContext = {
 };
 
 /**
- * 首页显示多个page控件
+ * 页面主体控件
  */
-var MyPage = React.createClass({
-    render: function() {
-       return (
-        <div>
-            <MyCardCollection />
-        </div>
-       );
-    }
-});
-
-/**
- * 页面顶部head控件
- */
-var MyPageHead = React.createClass({
+var MyPageMain = React.createClass({
     mixins: [childrenContext],
     /**
      * app bar lefticon click hanlder
@@ -75,7 +63,9 @@ var MyPageHead = React.createClass({
          */
         return (
             <div>
+                {/*页面head控件*/}
                 <MyAppBar ref='appBarTitle' onLeftIconButtonClickHandler={this.onLeftIconButtonClickHandler}/>
+                {/*页面左侧导航*/}
                 <LeftNav ref="leftNav" docked={false} menuItems={menuItems} onChange={this.leftNavOnChangeHandler}/>
                 <RouteHandler/>
             </div>
@@ -88,8 +78,8 @@ var MyPageHead = React.createClass({
  * @type {jsx}
  */
 var routes = (
-  <Route name="main" path="/" handler={MyPageHead}>
-    <DefaultRoute handler={MyPage}/>
+  <Route name="main" path="/" handler={MyPageMain}>
+    <DefaultRoute handler={MyCardCollection}/>
     {/*htmlName 将会传入handler控件的props.params中*/}
     <Route name="pages" path="/pages/:htmlName?" handler={MyArticle}/>
     {/*路由控件*/}

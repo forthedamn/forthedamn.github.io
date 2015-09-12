@@ -12,7 +12,7 @@ injectTapEventPlugin();
 var MyLinkButton = React.createClass({
     propTypes: {
         label: React.PropTypes.string.isRequired,
-        location: React.PropTypes.string.isRequired
+        onClick: React.PropTypes.func
     },
     render: function () {
         // 按键文字
@@ -21,13 +21,32 @@ var MyLinkButton = React.createClass({
         var location = this.props.location;
         // 传递参数
         var params = this.props.params;
-        return (
-            <div>
-                <Link to={location} params={params}>
-                    <FlatButton label={label}/>
-                </Link>
-            </div>
-        );
+        // LinkButton的type属性
+        switch(this.props.type){
+            // 当作为'返回'键时
+            case 'back':
+                var linkProps = {
+                    onClick :function() {
+                        window.history.back();
+                    }
+                }
+                return (
+                    <FlatButton {...linkProps}label={label}/>
+                    );
+            // 当作为普通linkbutton
+            default:
+                var linkProps = {
+                    to: location,
+                    params: params
+                }
+                return (
+                    <div>
+                        <Link {...linkProps}>
+                            <FlatButton label={label}/>
+                        </Link>
+                    </div>
+                );
+        }
     }
 });
 
