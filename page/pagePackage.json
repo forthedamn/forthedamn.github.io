@@ -3,8 +3,8 @@
 "cardSubtitle": "promise学习笔记","cardAbstract": "function getData(l) {if ( !l || l>8)..."},
 {"htmlName": "20150905","cardTitle": "Flux 之 dispatcher基本功能实现",
 "cardSubtitle": "","cardAbstract": "Flux是facebook提出的一种结构，适用于大型项目，dispatcher在其中充当很重要的角色"},
-{"htmlName": "test","imgTitle": "随便来张图","imgSubtitle": "...","imgSrc":"","cardTitle": "test title",
-"cardSubtitle": "test title","cardAbstract": "这是这篇文章的摘要"},
+{"htmlName": "20150919","imgTitle": "","imgSubtitle": "","imgSrc":"","cardTitle": "React 性能测试",
+"cardSubtitle": "","cardAbstract": "做个小例子，React创建Dom，循环刷新"},
 {"htmlName": "test","imgTitle": "随便来张图","imgSubtitle": "...","imgSrc":"","cardTitle": "test title",
 "cardSubtitle": "test title","cardAbstract": "这是这篇文章的摘要"}
 ]
