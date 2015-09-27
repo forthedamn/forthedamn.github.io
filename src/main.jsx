@@ -56,7 +56,9 @@ var MyPageMain = React.createClass({
     render: function () {
         // 用于leftNav 填充选项
         var menuItems = [
-          { route: 'directory', text: '目录' } ];
+          { route: '', text: '首页'},
+          { route: 'directory', text: '目录' }
+           ];
         /**
          * <leftNav>
          * menuItems 其实是一个<Menu/> 组件，这里面的内容事件通过 onChange 监听到

@@ -30,9 +30,7 @@ var MyArticle = React.createClass({
         var iframeOnloadHandler = this.iframeOnloadHandler;
         return (
             <Paper zDepth={1} style={{margin:'166px auto',width:'70%',padding:'20px'}}>
-                <Paper zDepth={1} style={{width: '88px'}}>
-                    <MyLinkButton type='back' label='< 返回' />
-                </Paper>
+                <MyLinkButton type='back' label='< 返回' />
                 <MyLoading
                     display={this.state.display}
                 />

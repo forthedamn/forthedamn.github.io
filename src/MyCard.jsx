@@ -39,9 +39,10 @@ var MyCard = React.createClass({
        return (
             <Card style={{width:"50%",margin:"70px auto",position:"relative"}}>
               <CardHeader
+                 style={{fontSize:"16px",fontWeight:'900'}}
                  title={this.props.cardTitle}
                  subtitle={this.props.cardSubtitle}
-                 avatar={<Avatar>Xin</Avatar>}/>
+                 avatar={<Avatar src='src/images/cardIcon.jpg'></Avatar>}/>
                  {mediaNode}
               <CardText>
                 {this.props.cardAbstract}

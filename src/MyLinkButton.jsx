@@ -3,7 +3,7 @@ var $ = require('jquery');
 var Router = require('react-router');
 var mui = require('material-ui');
 var injectTapEventPlugin = require("react-tap-event-plugin");
-var FlatButton = mui.FlatButton,
+var RaisedButton = mui.RaisedButton,
 Link = Router.Link,
 ThemeManager = new mui.Styles.ThemeManager();
 
@@ -31,7 +31,7 @@ var MyLinkButton = React.createClass({
                     }
                 }
                 return (
-                    <FlatButton {...linkProps}label={label}/>
+                    <RaisedButton {...linkProps} secondary={true}label={label}/>
                     );
             // 当作为普通linkbutton
             default:
@@ -42,7 +42,7 @@ var MyLinkButton = React.createClass({
                 return (
                     <div>
                         <Link {...linkProps}>
-                            <FlatButton label={label}/>
+                            <RaisedButton secondary={true} label={label}/>
                         </Link>
                     </div>
                 );
