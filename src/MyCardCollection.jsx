@@ -18,7 +18,7 @@ var MyCardCollection = React.createClass({
       $.ajax("../page/pagePackage.json").then(function(data,status,XHR){
         pages = data;
         var length = pages.length;
-        if (length <=3) {
+        if (length <= _this.state.end) {
           disabled = 'disabled';
         }
         _this.setState({
@@ -28,29 +28,34 @@ var MyCardCollection = React.createClass({
         })
       });
       return {
-        // 每次显示3页
+        // 初始显示页数
         end: 3,
         // 显示更多页面按键是否可点击
         disabled: disabled || 'disabled',
         // 存放页面信息
         pages:[],
+        // 供loading控件所使用的状态
         load: 'loading'
       }
     },
     /**
-     * 显示更多／翻页
+     * 页面显示状态处理方法
      */
-    nextPage: function () {
+    pageStateHandler: function (page) {
+      var end = page;
       var length = pages.length;
-      var end = this.state.end;
       var disabled;
       if (end >= length-1) {
         disabled = 'disabled';
       }
       this.setState({
-        end: end+3, // page数组显示的末端
+        end: page, // 当前显示页数
         disabled: disabled// 是否‘显示更多’
       })
+    },
+    componentWillMount() {
+      var page = this.props.page;
+      this.pageStateHandler(page);
     },
     render: function() {
       var _this = this;
@@ -72,7 +77,7 @@ var MyCardCollection = React.createClass({
             <div>
               {pageDoms}
               <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' 
-                disabled={this.state.disabled} onClick={this.nextPage}/>
+                disabled={this.state.disabled} onClick={this.props.loadMoreArticle}/>
             </div>
           </div>
        );

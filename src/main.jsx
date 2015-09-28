@@ -16,6 +16,13 @@ var MyArticle = require('./MyArticle');
 // 目录控件
 var MyDirectory = require('./MyDirectory');
 
+// 全局命名空间
+var global = {
+  // 初始化显示页面数量
+  page: 3
+};
+
+// touch to click 插件
 injectTapEventPlugin();
 
 /**
@@ -69,6 +76,7 @@ var MyPageMain = React.createClass({
                 <MyAppBar ref='appBarTitle' onLeftIconButtonClickHandler={this.onLeftIconButtonClickHandler}/>
                 {/*页面左侧导航*/}
                 <LeftNav ref="leftNav" docked={false} menuItems={menuItems} onChange={this.leftNavOnChangeHandler}/>
+                {/*ReactRouter 将路由管理的所有组件都放在了这个标签中*/}
                 <RouteHandler/>
             </div>
             )
@@ -76,12 +84,42 @@ var MyPageMain = React.createClass({
 });
 
 /**
- * 路由
+ * 重新封装MyCardCollection组件
+ * 保存当前已显示的卡片
+ */
+var CardCollection = React.createClass({
+
+  getInitialState() {
+      return {
+        page: global.page
+      };
+  },
+
+  loadMoreArticleHandler() {
+    global.page += 3;
+    this.setState({
+      page: global.page
+    })
+    this.refs.collection.pageStateHandler(global.page); 
+  },
+
+  render: function() {
+    return (
+        <div>
+          <MyCardCollection ref='collection' page={this.state.page} loadMoreArticle={this.loadMoreArticleHandler}/>
+        </div>
+      )
+  }
+})
+
+
+/**
+ * 路由 管理组件
  * @type {jsx}
  */
 var routes = (
   <Route name="main" path="/" handler={MyPageMain}>
-    <DefaultRoute handler={MyCardCollection}/>
+    <DefaultRoute handler={CardCollection}/>
     {/*htmlName 将会传入handler控件的props.params中*/}
     <Route name="pages" path="/pages/:htmlName?" handler={MyArticle}/>
     {/*路由控件*/}
