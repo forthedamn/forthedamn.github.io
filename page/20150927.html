@@ -1055,6 +1055,7 @@ body .markdown-body
 
 <h4 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用闭包的方式来实现单例</h4>
 <p><pre><code class="javascript">    var getSingle = (function(){
+        // 将单例标志保存在闭包中
         var instance;
         return function (name) {
             var Single = function (name) {
@@ -1075,7 +1076,8 @@ body .markdown-body
 </code></pre><br />
 <strong>在上述例子中，我们看到单例检测和单例实例化都在一个函数中实现，这样的实践拓展性很低，复用也很困难，所以我们将这种写法加以改进</strong></p>
 <h4 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用代理的方式来实现单例</h4>
-<pre><code class="javascript">    var singleProxy = (function () {
+<pre><code class="javascript">    // 单例创建和单例实现分开
+    var singleProxy = (function () {
         var instance;
         return function (single,option) {
             if (!instance) {
@@ -1099,7 +1101,7 @@ body .markdown-body
 
 <h4 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>最后来看看单例模式在前端开发中实际的应用</h4>
 <blockquote>
-<p>我们知道domElement是一个对象，比如 document.createElement(&lsquo;div&rsquo;),创建出的dom节点是一个实例对象。比如这个dom节点中的属性很多，而在全局中唯一，如果点击登陆按键弹出登陆框，我们不需要每次点击都实现一个登陆框实例。</p>
+<p>我们知道domElement是一个对象实例，比如 document.createElement(&lsquo;div&rsquo;),创建出的div节点就是一个对象实例。当一个dom节点在全局中唯一时，我们可以使用单例模式来管理这个dom节点，比如这个dom节点的创建是绑定在一个按键的回调函数上面，每当我们点击这个按键时，该dom节点都将创建出来，如果每次创建都是一次全新的实例化，显示是浪费了资源，这个时候就要使用单例模式来实现，下面举一个登陆框单例模式的例子。 </p>
 </blockquote>
 <pre><code class="javascript">    var createLogin = function (html) {
         var div = document.createElement('div');
@@ -1115,6 +1117,7 @@ body .markdown-body
         }
     }
     var login = getSingle(createLogin);
+    // 登陆框的创建绑定在‘登陆’按钮上
     document.querySelector('#login').onclick = function() {
         var loginDiv = login('登陆框的内容');
         loginDiv.style.display = 'block';
