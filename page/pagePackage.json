@@ -1,10 +1,10 @@
 [
 {"htmlName": "20150927","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript设计模式之单例模式",
-"cardSubtitle": "by xin","cardAbstract": "在设计模式中单例模式是十分常用的模式，在Javascript中同样应用广泛。"},
+"cardSubtitle": "by xin","cardAbstract": "在设计模式中单例模式是十分常用的模式，在Javascript中同样应用广泛。","tagType":["Javascript","设计模式"]},
 {"htmlName": "20150919","imgTitle": "","imgSubtitle": "","imgSrc":"","cardTitle": "React 性能测试",
-"cardSubtitle": "by xin","cardAbstract": "测试React创建dom的速度，可调节创建dom数量和dom刷新速率"},
+"cardSubtitle": "by xin","cardAbstract": "测试React创建dom的速度，可调节创建dom数量和dom刷新速率","tagType":["ReactJs"]},
 {"htmlName": "20150905","cardTitle": "Flux 之 dispatcher基本功能实现",
-"cardSubtitle": "by xin","cardAbstract": "Flux是facebook提出的一种结构，适用于大型项目，dispatcher在其中充当很重要的角色"},
+"cardSubtitle": "by xin","cardAbstract": "Flux是facebook提出的一种结构，适用于大型项目，dispatcher在其中充当很重要的角色","tagType":["Javascript","ReactJs","Flux"]},
 {"htmlName": "20150829","cardTitle": "promise小程序",
-"cardSubtitle": "by xin","cardAbstract": "function getData(l) {if ( !l || l>8)..."}
+"cardSubtitle": "by xin","cardAbstract": "function getData(l) {if ( !l || l>8)...","tagType":["Javascript","Promise"]}
 ]

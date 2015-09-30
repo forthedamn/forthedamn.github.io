@@ -8,12 +8,17 @@ CardMedia = mui.CardMedia,
 CardTitle = mui.CardTitle,
 CardActions = mui.CardActions,
 CardText = mui.CardText,
-Avatar = mui.Avatar;
+Avatar = mui.Avatar,
+FontIcon = mui.FontIcon;
 
 
 var MyLinkButton = require("./MyLinkButton.jsx");
 
 var MyCard = React.createClass({
+      propTypes: {
+        // 文章类型
+        tagType: React.PropTypes.instanceOf(Array)
+      },
     /**
      * 阅读全文点击事件
      */
@@ -36,6 +41,14 @@ var MyCard = React.createClass({
           }
       // 文件名
       var htmlName = {htmlName: this.props.htmlName};
+      // tag标签
+      var tagNode = this.props.tagType.map(function(v,k){
+        return (<span style={{padding:'0 5px',cursor:'pointer'}}>
+                  {v}
+                </span>
+          )
+      })
+
        return (
             <Card style={{width:"50%",margin:"70px auto",position:"relative"}}>
               <CardHeader
@@ -50,6 +63,11 @@ var MyCard = React.createClass({
               <CardActions>
                 <MyLinkButton label="阅读全文" location="pages" params={htmlName}/>
               </CardActions>
+                <div style={{left:"130px",top:"39px",
+                color:'#777',fontSize:'10px',position:"absolute"}}>
+                <i className="fa fa-tags" ></i>
+                {tagNode}
+                </div>
              </Card>
        );
     }

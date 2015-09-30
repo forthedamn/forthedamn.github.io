@@ -40,7 +40,7 @@ var MyLinkButton = React.createClass({
                     params: params
                 }
                 return (
-                    <div>
+                    <div style={{display:'inline-block'}}>
                         <Link {...linkProps}>
                             <RaisedButton secondary={true} label={label}/>
                         </Link>
