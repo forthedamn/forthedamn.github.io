@@ -76,9 +76,11 @@ var MyCardCollection = React.createClass({
             <MyLoading display={this.state.load} />
             <div>
               {pageDoms}
-              <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' 
-                disabled={this.state.disabled} onClick={this.props.loadMoreArticle}/>
             </div>
+            <FlatButton style={{margin: '0 auto 30px auto',display: 'block'}}label='显示更多' 
+              disabled={this.state.disabled} onClick={this.props.loadMoreArticle}>
+              <i className="fa fa-spinner fa-pulse" style={{marginRight: '13px'}}></i>
+            </FlatButton>
           </div>
        );
     }
