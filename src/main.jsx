@@ -1,8 +1,10 @@
 var React = require('react');
 var mui = require('material-ui');
+var $ = require('jquery');
 var Router = require('react-router');
 var injectTapEventPlugin = require("react-tap-event-plugin"),
 LeftNav = mui.LeftNav,
+
 ThemeManager = new mui.Styles.ThemeManager();
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
@@ -60,6 +62,16 @@ var MyPageMain = React.createClass({
     leftNavOnChangeHandler: function(e, key, payload) {
       window.location.hash = payload.route;
     },
+    /**
+     * '返回顶部'点击回调事件
+     */
+    getTopHandler: function() {
+      if($(window).scrollTop() >100){
+        $('body,html').animate({ scrollTop: 0 }, 800);
+      }else {
+        $(window).scrollTop(0);
+      }
+    },
     render: function () {
         // 用于leftNav 填充选项
         var menuItems = [
@@ -76,6 +88,14 @@ var MyPageMain = React.createClass({
                 <MyAppBar ref='appBarTitle' onLeftIconButtonClickHandler={this.onLeftIconButtonClickHandler}/>
                 {/*页面左侧导航*/}
                 <LeftNav ref="leftNav" docked={false} menuItems={menuItems} onChange={this.leftNavOnChangeHandler}/>
+                <div
+                  onClick={this.getTopHandler}
+                  title='返回顶部'
+                  style={{position:'fixed',right:'240px',bottom:'80px',color:'#777',
+                fontSize:'45px',backgroundColor:'#E2DADA',height:'50px',width:'50px',
+                cursor:'pointer'}}>
+                  <i style={{position:'relative',top:'-9px',left:'2px'}} className="fa fa-chevron-up"></i>
+                </div>
                 {/*ReactRouter 将路由管理的所有组件都放在了这个标签中*/}
                 <RouteHandler/>
             </div>
