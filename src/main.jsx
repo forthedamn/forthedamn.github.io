@@ -88,7 +88,8 @@ var MyPageMain = React.createClass({
                 <MyAppBar ref='appBarTitle' onLeftIconButtonClickHandler={this.onLeftIconButtonClickHandler}/>
                 {/*页面左侧导航*/}
                 <LeftNav ref="leftNav" docked={false} menuItems={menuItems} onChange={this.leftNavOnChangeHandler}/>
-                <div
+                <div 
+                  id='getTop'
                   onClick={this.getTopHandler}
                   title='返回顶部'
                   style={{position:'fixed',right:'240px',bottom:'80px',color:'#777',

@@ -32,6 +32,10 @@ var MyAppBar = React.createClass({
         // 绑定滚动，实现页面顶部appbar自适应变化
         $(window).scroll(function(e){
             var scrollHeight = $(this).scrollTop();
+            // 返回顶部
+            var getTop = document.getElementById('getTop');
+            getTop.style.display = 'block';
+            if (scrollHeight < 10) getTop.style.display = 'none';;
             // 变换缓慢因子，该因子越大，变换越缓慢
             var changeSlowFactor = 300;
             // 获得滚动高度比例,下滑逐渐趋于1
