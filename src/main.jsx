@@ -92,9 +92,9 @@ var MyPageMain = React.createClass({
                   id='getTop'
                   onClick={this.getTopHandler}
                   title='返回顶部'
-                  style={{position:'fixed',right:'240px',bottom:'80px',color:'#777',
+                  style={{position:'fixed',right:'10%',bottom:'80px',color:'#777',
                 fontSize:'45px',backgroundColor:'#E2DADA',height:'50px',width:'50px',
-                cursor:'pointer'}}>
+                cursor:'pointer',zIndex:'9999'}}>
                   <i style={{position:'relative',top:'-9px',left:'2px'}} className="fa fa-chevron-up"></i>
                 </div>
                 {/*ReactRouter 将路由管理的所有组件都放在了这个标签中*/}

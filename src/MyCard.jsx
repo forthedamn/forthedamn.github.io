@@ -19,6 +19,29 @@ var MyCard = React.createClass({
         // 文章类型
         tagType: React.PropTypes.instanceOf(Array)
       },
+      getInitialState() {
+        return {
+          cardWidth: '60%'
+        }
+      },
+      componentWillMount() {
+        if (window.innerWidth < 600) {
+          this.setState({
+            cardWidth: '100%'
+          })
+        }
+        window.addEventListener('resize', function(event){
+          if (window.innerWidth < 600) {
+            this.setState({
+              cardWidth: '100%'
+            })
+          }else {
+            this.setState({
+              cardWidth: '60%'
+            })
+          }
+        }.bind(this),false)
+      },
     /**
      * 阅读全文点击事件
      */
@@ -48,11 +71,18 @@ var MyCard = React.createClass({
                 </span>
           )
       })
-
+      var cardStyle = {
+        width: this.state.cardWidth,
+        margin:"70px auto",
+        position:"relative"
+      }
        return (
-            <Card style={{width:"50%",margin:"70px auto",position:"relative"}}>
+            <Card style={cardStyle}>
               <CardHeader
-                 style={{fontSize:"16px",fontWeight:'900'}}
+                 style={{fontSize:"16px",fontWeight:'900',
+                    overflow:'hidden',textOverflow:'ellipsis',
+                    whiteSpace:'nowrap'
+                  }}
                  title={this.props.cardTitle}
                  subtitle={this.props.cardSubtitle}
                  avatar={<Avatar src='src/images/cardIcon.jpg'></Avatar>}/>

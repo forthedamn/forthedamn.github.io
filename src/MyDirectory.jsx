@@ -24,7 +24,8 @@ var MyDirectory = React.createClass({
     getInitialState: function () {
         return {
             load: 'loading',
-            pageAbstract: ''
+            pageAbstract: '',
+            cardWidth: '70%'
         };
     },
     componentWillMount: function () {
@@ -34,7 +35,23 @@ var MyDirectory = React.createClass({
                 load: 'loaded',
                 pageAbstract: data
             })
-        })  
+        });
+        if (window.innerWidth < 600) {
+          this.setState({
+            cardWidth: '100%'
+          })
+        };
+        window.addEventListener('resize', function(event){
+          if (window.innerWidth < 600) {
+            this.setState({
+              cardWidth: '100%'
+            })
+          }else {
+            this.setState({
+              cardWidth: '70%'
+            })
+          }
+        }.bind(this),false);
     },
     render: function () {
         var _this = this;
@@ -70,8 +87,13 @@ var MyDirectory = React.createClass({
                 }()
              });
         }
+        var parperStyle = {
+            margin: '166px auto',
+            width: this.state.cardWidth,
+            padding: '20px'
+        }
         return (
-            <Paper zDepth={1} style={{margin:'166px auto',width:'70%',padding:'20px'}}>
+            <Paper zDepth={1} style={parperStyle}>
                 <MyLinkButton type='back' label='< 返回' />
                 <List>
                     {listItems}
