@@ -66,9 +66,6 @@ var MyAppBar = React.createClass({
             React.findDOMNode(_this.refs.appbarTitleBg).style.transform = 'scale(1,1)';
         }, 0);
     },
-    componentWillUpdate: function () {
-        
-    },
     onLeftIconButtonClickHandler: function () {
         this.props.onLeftIconButtonClickHandler();
     },

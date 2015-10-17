@@ -1,5 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
-  width: 45em;
+body {
   border: 1px solid #ddd;
   outline: 1300px solid #fff;
   margin: 16px auto;
@@ -7,17 +6,6 @@
 
 body .markdown-body
 {
-  padding: 30px;
-}
-
-@font-face {
-  font-family: fontawesome-mini;
-  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
-}
-
-@font-face {
-  font-family: octicons-anchor;
-  src: url(data:font/woff;charset=utf-8;base64,d09GRgABAAAAAAYcAA0AAAAACjQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAABMAAAABwAAAAca8vGTk9TLzIAAAFMAAAARAAAAFZG1VHVY21hcAAAAZAAAAA+AAABQgAP9AdjdnQgAAAB0AAAAAQAAAAEACICiGdhc3AAAAHUAAAACAAAAAj//wADZ2x5ZgAAAdwAAADRAAABEKyikaNoZWFkAAACsAAAAC0AAAA2AtXoA2hoZWEAAALgAAAAHAAAACQHngNFaG10eAAAAvwAAAAQAAAAEAwAACJsb2NhAAADDAAAAAoAAAAKALIAVG1heHAAAAMYAAAAHwAAACABEAB2bmFtZQAAAzgAAALBAAAFu3I9x/Nwb3N0AAAF/AAAAB0AAAAvaoFvbwAAAAEAAAAAzBdyYwAAAADP2IQvAAAAAM/bz7t4nGNgZGFgnMDAysDB1Ml0hoGBoR9CM75mMGLkYGBgYmBlZsAKAtJcUxgcPsR8iGF2+O/AEMPsznAYKMwIkgMA5REMOXicY2BgYGaAYBkGRgYQsAHyGMF8FgYFIM0ChED+h5j//yEk/3KoSgZGNgYYk4GRCUgwMaACRoZhDwCs7QgGAAAAIgKIAAAAAf//AAJ4nHWMMQrCQBBF/0zWrCCIKUQsTDCL2EXMohYGSSmorScInsRGL2DOYJe0Ntp7BK+gJ1BxF1stZvjz/v8DRghQzEc4kIgKwiAppcA9LtzKLSkdNhKFY3HF4lK69ExKslx7Xa+vPRVS43G98vG1DnkDMIBUgFN0MDXflU8tbaZOUkXUH0+U27RoRpOIyCKjbMCVejwypzJJG4jIwb43rfl6wbwanocrJm9XFYfskuVC5K/TPyczNU7b84CXcbxks1Un6H6tLH9vf2LRnn8Ax7A5WQAAAHicY2BkYGAA4teL1+yI57f5ysDNwgAC529f0kOmWRiYVgEpDgYmEA8AUzEKsQAAAHicY2BkYGB2+O/AEMPCAAJAkpEBFbAAADgKAe0EAAAiAAAAAAQAAAAEAAAAAAAAKgAqACoAiAAAeJxjYGRgYGBhsGFgYgABEMkFhAwM/xn0QAIAD6YBhwB4nI1Ty07cMBS9QwKlQapQW3VXySvEqDCZGbGaHULiIQ1FKgjWMxknMfLEke2A+IJu+wntrt/QbVf9gG75jK577Lg8K1qQPCfnnnt8fX1NRC/pmjrk/zprC+8D7tBy9DHgBXoWfQ44Av8t4Bj4Z8CLtBL9CniJluPXASf0Lm4CXqFX8Q84dOLnMB17N4c7tBo1AS/Qi+hTwBH4rwHHwN8DXqQ30XXAS7QaLwSc0Gn8NuAVWou/gFmnjLrEaEh9GmDdDGgL3B4JsrRPDU2hTOiMSuJUIdKQQayiAth69r6akSSFqIJuA19TrzCIaY8sIoxyrNIrL//pw7A2iMygkX5vDj+G+kuoLdX4GlGK/8Lnlz6/h9MpmoO9rafrz7ILXEHHaAx95s9lsI7AHNMBWEZHULnfAXwG9/ZqdzLI08iuwRloXE8kfhXYAvE23+23DU3t626rbs8/8adv+9DWknsHp3E17oCf+Z48rvEQNZ78paYM38qfk3v/u3l3u3GXN2Dmvmvpf1Srwk3pB/VSsp512bA/GG5i2WJ7wu430yQ5K3nFGiOqgtmSB5pJVSizwaacmUZzZhXLlZTq8qGGFY2YcSkqbth6aW1tRmlaCFs2016m5qn36SbJrqosG4uMV4aP2PHBmB3tjtmgN2izkGQyLWprekbIntJFing32a5rKWCN/SdSoga45EJykyQ7asZvHQ8PTm6cslIpwyeyjbVltNikc2HTR7YKh9LBl9DADC0U/jLcBZDKrMhUBfQBvXRzLtFtjU9eNHKin0x5InTqb8lNpfKv1s1xHzTXRqgKzek/mb7nB8RZTCDhGEX3kK/8Q75AmUM/eLkfA+0Hi908Kx4eNsMgudg5GLdRD7a84npi+YxNr5i5KIbW5izXas7cHXIMAau1OueZhfj+cOcP3P8MNIWLyYOBuxL6DRylJ4cAAAB4nGNgYoAALjDJyIAOWMCiTIxMLDmZedkABtIBygAAAA==) format('woff');
 }
 
 .markdown-body {
@@ -319,14 +307,7 @@ body .markdown-body
 }
 
 .markdown-body .headeranchor-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
-  padding-right: 6px;
-  padding-left: 30px;
-  margin-left: -30px;
+  display: none;
 }
 
 .markdown-body .headeranchor-link:focus {
@@ -363,11 +344,7 @@ body .markdown-body
 .markdown-body h4:hover .headeranchor-link,
 .markdown-body h5:hover .headeranchor-link,
 .markdown-body h6:hover .headeranchor-link {
-  height: 1em;
-  padding-left: 8px;
-  margin-left: -30px;
-  line-height: 1;
-  text-decoration: none;
+
 }
 
 .markdown-body h1:hover .headeranchor-link .headeranchor,
@@ -376,7 +353,7 @@ body .markdown-body
 .markdown-body h4:hover .headeranchor-link .headeranchor,
 .markdown-body h5:hover .headeranchor-link .headeranchor,
 .markdown-body h6:hover .headeranchor-link .headeranchor {
-  display: inline-block;
+  
 }
 
 .markdown-body h1 {
@@ -467,8 +444,9 @@ body .markdown-body
 
 .markdown-body blockquote {
   padding: 0 15px;
-  color: #777;
-  border-left: 4px solid #ddd;
+  color: #484848;
+  border-left: 5px solid rgba(191,87,73,0.2);
+  background-color: rgba(204,122,111,0.1);
 }
 
 .markdown-body blockquote>:first-child {
@@ -523,12 +501,6 @@ body .markdown-body
   border-radius: 3px;
 }
 
-.markdown-body code:before,
-.markdown-body code:after {
-  letter-spacing: -0.2em;
-  content: "\00a0";
-}
-
 .markdown-body pre>code {
   padding: 0;
   margin: 0;
@@ -545,11 +517,9 @@ body .markdown-body
 
 .markdown-body .codehilite pre,
 .markdown-body pre {
-  padding: 16px;
-  overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: #f7f7f7;
+  background-color: #f8f5ec;
   border-radius: 3px;
 }
 
@@ -560,6 +530,8 @@ body .markdown-body
 
 .markdown-body pre {
   word-wrap: normal;
+  position: relative;
+  padding-top: 25px;
 }
 
 .markdown-body pre code {
@@ -573,10 +545,17 @@ body .markdown-body
   background-color: transparent;
   border: 0;
 }
-
-.markdown-body pre code:before,
-.markdown-body pre code:after {
-  content: normal;
+.markdown-body pre:before{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #c2c0bc;
+  background-color: #f1ede4;
+  content: "Code";
 }
 
 /* Admonition */
@@ -884,20 +863,9 @@ body .markdown-body
 }
 
 .markdown-body .headeranchor {
-  font: normal normal 16px octicons-anchor;
-  line-height: 1;
-  display: inline-block;
-  text-decoration: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .headeranchor:before {
-  content: '\f05c';
 }
 
 .markdown-body .task-list-item {
@@ -1013,69 +981,3 @@ body .markdown-body
   .markdown-body h3 {
     page-break-after: avoid;
   }
-}
-</style><title>20151001</title></head><body><article class="markdown-body"><h3 id="documentreadywindowloadwindowonload"><a name="user-content-documentreadywindowloadwindowonload" href="#documentreadywindowloadwindowonload" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>$(document).ready|$(window).load|window.onload 区别</h3>
-<p><strong>$(document).ready|$(window).load|window.onload</strong>在编程的过程中经常使用到，现在我们来看看这三者之间的区别</p>
-<h4 id="documentready"><a name="user-content-documentready" href="#documentready" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>$(document).ready</h4>
-<p>在写Jquery的时候，经常会将代码写到<em>$(document).ready</em>之中，<em>$(document).ready</em>是指<strong>除了img之外</strong>的所有dom准备就绪。因为img的加载耗时较大，但很多时候我们不需要对img进行操作，这样的话就不需要等待img加载完成，这个时候<em>$(document).ready</em>就非常适合。<br />
-实现方式有以下几种：</p>
-<pre><code>//call type 1
-$(document).ready(function() {
-/* work when all HTML loaded except images and DOM is ready **/
-// your code
-});
-
-//call type 2
-$(function() {
-/*work when all HTML loaded except images and DOM is ready **/
-//your code
-});
-
-//call type 3
-$(document).on('ready', function(){
-/* work when all HTML loaded except images and DOM is ready **/
-//your code
-});
-</code></pre>
-<h3 id="windowonload"><a name="user-content-windowonload" href="#windowonload" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>$(window).onload</h3>
-<p><em>$(window).onload</em>和<em>$(document).ready</em>都是JQuery的特有事件，不同于<em>$(document).ready</em>的是<em>$(window).onload</em>是等<strong>包括img在内</strong>的全部dom加载好了才会执行回调。所以当要对页面中img做操作时，就使用该事件回调。<br />
-实现方式：</p>
-<pre><code>$(window).load(function() {
-/* this is come when complete page is fully loaded, including all frames, 
-objects and images **/
-});
-</code></pre>
-<h3 id="windowonload_1"><a name="user-content-windowonload_1" href="#windowonload_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>window.onload</h3>
-<p>不同于上面两个事件，<em>window.onload</em>是原生Javascript的事件，但是它和<em>$(window).onload</em>有着同样的效果，都是等待<strong>包括img在内</strong>的所有dom加载完毕后再执行<br />
-实现方式：</p>
-<pre><code>window.onload = function() {
-    // your code
-    /* this is come when complete page is fully loaded, including all frames, objects and images */
-}</code></pre>
-<h4 id="html"><a name="user-content-html" href="#html" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>写到HTML中</h4>
-<pre><code>&lt;!-- on body onload call myFunction --&gt;
-&lt;body onload="myFunction()"&gt;
-// 或者写到img标签中
-&lt;!-- on image onload call myImageFunction() --&gt;
-&lt;img src="image path src" onload="myImageFunction()"&gt;
-</code></pre>
-<h3 id="script"><a name="user-content-script" href="#script" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>script 标签</h3>
-<blockquote>
-<p>我们经常使用到script标签，在script标签中的<strong>内联</strong>javascript代码是在何时解析的呢？</p>
-</blockquote>
-<p>script标签会被当作dom树中一个普通的标签进行解析，也就是说html中所有标签按照从上而下的顺序执行各个标签，当执行到script标签时，则执行其中的代码，当其中代码执行完毕或者抛出异常时，再去执行下一个标签，注意：<strong>此执行过程是发生在dom渲染之前的，</strong>所以当script标签中的代码遭遇阻塞，则会影响页面的渲染，这也是为什么javascript代码要后置。</p>
-<p>如果使用外联javascript代码，则有办法让这种阻塞情况得到改善。<br />
-这个时候也许你想到了如果让javascript解析变为异步，则不会阻塞script标签后面的标签的渲染了。这种做法是可行的，采用H5的async和defer属性。</p>
-<pre><code>&lt;script async src="siteScript.js" onload="myInit()"&gt;&lt;/script&gt;
-// 在safari中增加了defer属性
-&lt;script defer src="siteScript.js" onload="myInit()"&gt;&lt;/script&gt;
-</code></pre>
-<p>async和defer的区别：<br />
-1.  async是在代码解析完后立即开始执行，代码解析过程和dom解析同时进行，只是在代码执行阶段会阻塞dom解析。<br />
-2.  defer是在代码解析和dom解析都完毕后，再执行代码</p>
-<blockquote>
-<p>参考出处：<br />
-1.  <a target="_top" href="http://tech-blog.maddyzone.com/javascript/document-ready-vs-window-load-vs-window-onload">document-ready-vs-window-load-vs-window-onload</a><br />
-2.  <a target="_top" href="http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html">async-vs-defer-attributes</a></p>
-</blockquote></article>
-</body></html>

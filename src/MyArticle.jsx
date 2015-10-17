@@ -13,29 +13,51 @@ var MyLoading = require("./MyLoading");
 var MyArticle = React.createClass({
     getInitialState: function () {
         return {
-            display: 'loading'
+            display: 'loading',
+            cardWidth: '70%'
         }
     },
-    // 在iframe加载时自适应高度
-    iframeOnloadHandler: function () {
-        var height = articleiFrame.document.body.scrollHeight;
-        $('#articleiFrame').css('height', height+'px');
+    componentWillMount() {
+        if (window.innerWidth < 600) {
+          this.setState({
+            cardWidth: '100%'
+          })
+        }
+        window.addEventListener('resize', function(event){
+            if (window.innerWidth < 600) {
+            this.setState({
+              cardWidth: '100%'
+            })
+            }else {
+            this.setState({
+              cardWidth: '70%'
+            })
+            }        
+        }.bind(this),false);
+
+    },
+    contentOnloadHandler: function () {
         this.setState({
             display: 'loaded'
-        }); 
+        });
     },
     render: function () {
         var htmlName = this.props.params.htmlName;
         var pageSrc = '../page/' + htmlName + '.html';
-        var iframeOnloadHandler = this.iframeOnloadHandler;
+        var contentOnloadHandler = this.contentOnloadHandler;
+        var paperStyle = {
+            margin:'166px auto',
+            width:this.state.cardWidth,
+            padding:'20px'
+        }
         return (
-            <Paper zDepth={1} style={{margin:'166px auto',width:'70%',padding:'20px'}}>
+            <Paper zDepth={1} style={paperStyle}>
                 <MyLinkButton type='back' label='< 返回' />
                 <MyLoading
                     display={this.state.display}
                 />
                 <MyArticleContent 
-                    iframeOnloadHandler={iframeOnloadHandler} 
+                    contentOnloadHandler={contentOnloadHandler} 
                     pageSrc={pageSrc}
                     display={this.state.display}
                     />
@@ -48,14 +70,31 @@ var MyArticle = React.createClass({
  * 文章正文
  */
 var MyArticleContent = React.createClass({
+    /**
+     * 对文本做适配处理
+     */
+    contentAdapt() {
+
+    },
+    componentWillMount() {
+        var _this = this;
+        // 加载文章
+        $.ajax(this.props.pageSrc).then(function(data,status,XHR){
+            var start = data.indexOf('<body>') + 6;
+            var end = data.indexOf('</body>');
+            var content = data.slice(start, end);
+            $('#article-content').html(content);
+            _this.contentAdapt();
+            // 让组件的state变为loaded
+            _this.props.contentOnloadHandler();
+        }) 
+    },
     render: function () {
         // 处于loading阶段是隐藏
-        var display = this.props.display === 'loading' ? {display:'none'} : {display:'block'};
+        var display = this.props.display === 'loading' ? 
+        {display:'none'} : {display: 'block'};
         return (
-            <div style={display}>
-                <iframe id="articleiFrame" name="articleiFrame" onLoad={this.props.iframeOnloadHandler}
-                    style={{marginTop:'10px',width: '100%',border: '0'}} src={this.props.pageSrc}>
-                </iframe>
+            <div  id='article-content' style={display}>
             </div>
             )
     }

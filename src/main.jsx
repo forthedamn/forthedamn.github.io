@@ -94,7 +94,7 @@ var MyPageMain = React.createClass({
                   title='返回顶部'
                   style={{position:'fixed',right:'10%',bottom:'80px',color:'#777',
                 fontSize:'45px',backgroundColor:'#E2DADA',height:'50px',width:'50px',
-                cursor:'pointer',zIndex:'9999'}}>
+                cursor:'pointer',zIndex:'9999',display:'none',opacity:'0.7'}}>
                   <i style={{position:'relative',top:'-9px',left:'2px'}} className="fa fa-chevron-up"></i>
                 </div>
                 {/*ReactRouter 将路由管理的所有组件都放在了这个标签中*/}
