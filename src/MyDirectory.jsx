@@ -24,6 +24,7 @@ var MyDirectory = React.createClass({
     getInitialState: function () {
         return {
             load: 'loading',
+            // 文章题目
             pageAbstract: '',
             cardWidth: '70%'
         };
@@ -36,6 +37,7 @@ var MyDirectory = React.createClass({
                 pageAbstract: data
             })
         });
+        // 自适应操作
         if (window.innerWidth < 600) {
           this.setState({
             cardWidth: '100%'
@@ -56,7 +58,6 @@ var MyDirectory = React.createClass({
     render: function () {
         var _this = this;
         var listItemProps = {
-            onTouchStart: _this.clickHandler,
             leftAvatar: <Avatar src="src/images/head.jpg"/>
         };
         var pageAbstract = this.state.pageAbstract;

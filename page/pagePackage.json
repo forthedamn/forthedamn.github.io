@@ -1,4 +1,6 @@
 [
+{"htmlName": "20151128","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript2015之箭头函数",
+"cardSubtitle": "by xin","cardAbstract": "在javascript2015(es6)中，有许多有意思的新特性，其中箭头函数就是一种奇葩的函数定义方法，来了解一下吧","tagType":["Javascript"]},
 {"htmlName": "20151122","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript设计模式之装饰者模式",
 "cardSubtitle": "by xin","cardAbstract": "装饰者模式在传统的编程语言中是很常用的，但是javascript本身是一门动态语言，这让装饰者模式在javascript中有了独特的用法，一起来看看吧","tagType":["Javascript","设计模式"]},
 {"htmlName": "20151105","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "display:table-cell的一些妙用",
