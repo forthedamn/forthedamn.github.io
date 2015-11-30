@@ -1,4 +1,6 @@
 [
+{"htmlName": "20151130","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "关于原型链继承一些有趣的笔记",
+"cardSubtitle": "by xin","cardAbstract": "在javascript中，原型链继承经常用到，但是在原型链继承中也有一些奇葩的地方需要注意，点击阅读全文吧~","tagType":["Javascript"]},
 {"htmlName": "20151128","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript2015之箭头函数",
 "cardSubtitle": "by xin","cardAbstract": "在javascript2015(es6)中，有许多有意思的新特性，其中箭头函数就是一种奇葩的函数定义方法，来了解一下吧","tagType":["Javascript"]},
 {"htmlName": "20151122","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript设计模式之装饰者模式",
