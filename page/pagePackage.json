@@ -1,4 +1,6 @@
 [
+{"htmlName": "20151225","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript中的静态属性",
+"cardSubtitle": "by xin","cardAbstract": "静态属性这个东西很少在Javascript中提到，多用于C和JAVA中，但是了解静态属性在JS中运用，能更深入的了解这门语言","tagType":["Javascript"]},
 {"htmlName": "20151206","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript中的请求委托和抽象类的模拟",
 "cardSubtitle": "by xin","cardAbstract": "我就知道事件委托，请求委托是啥？！抽象类，在javascript中？反正我是不信 (-.-)","tagType":["Javascript","设计模式"]},
 {"htmlName": "20151130","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "关于原型链继承一些有趣的笔记",
