@@ -9,6 +9,7 @@ Avatar = mui.Avatar,
 Link = Router.Link;
 
 var MyLinkButton = require('./MyLinkButton');
+// 加载菊花
 var MyLoading = require('./MyLoading');
 
 /**
@@ -32,9 +33,25 @@ var MyDirectory = React.createClass({
     componentWillMount: function () {
         var _this = this;
         $.ajax("../page/pagePackage.json").then(function(data,status,XHR){
+            // 加载类型
+            var type = _this.props.params.type.toLowerCase();
+            // 缓存结果
+            var result = [];
+            // 加载指定类型
+            if (type !== 'all') {
+                data.forEach(function(v,i){
+			//缓存tagType
+                    var typeArray = v.tagType.map(function(value,i) {
+                        return value.toLowerCase();
+                    })
+                    if(typeArray.indexOf(type) !== -1) result.push(v)
+                })
+            }else {
+                result = data;
+            }
             _this.setState({
                 load: 'loaded',
-                pageAbstract: data
+                pageAbstract: result
             })
         });
         // 自适应操作
@@ -57,11 +74,12 @@ var MyDirectory = React.createClass({
     },
     render: function () {
         var _this = this;
+        // 头像图片
         var listItemProps = {
             leftAvatar: <Avatar src="src/images/head.jpg"/>
         };
+        // 获得pagePackage中的内容摘要
         var pageAbstract = this.state.pageAbstract;
-
         var listItems = <MyLoading display={this.state.load}/>;
         if (pageAbstract) {
             listItems = pageAbstract.map(function(data){

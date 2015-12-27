@@ -33,6 +33,19 @@ var MyLinkButton = React.createClass({
                 return (
                     <RaisedButton {...linkProps} secondary={true}label={label}/>
                     );
+			// 作为类型标签
+			case 'typeTag':
+				var linkProps = {
+					to: location,
+					params: params
+				}
+				return (
+						<div style={{display:'inline-block'}}>
+							<Link {...linkProps}>
+								{label}
+							</Link>
+						</div>
+					   );
             // 当作为普通linkbutton
             default:
                 var linkProps = {

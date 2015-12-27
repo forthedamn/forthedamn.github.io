@@ -76,7 +76,7 @@ var MyPageMain = React.createClass({
         // 用于leftNav 填充选项
         var menuItems = [
           { route: '', text: '首页'},
-          { route: 'directory', text: '目录' }
+          { route: 'directory/all', text: '目录' }
            ];
         /**
          * <leftNav>
@@ -144,7 +144,7 @@ var routes = (
     {/*htmlName 将会传入handler控件的props.params中*/}
     <Route name="pages" path="/pages/:htmlName?" handler={MyArticle}/>
     {/*路由控件*/}
-    <Route name="directory" path="/directory" handler={MyDirectory}/>
+    <Route name="directory" path="/directory/:type?" handler={MyDirectory}/>
   </Route>
 );
 

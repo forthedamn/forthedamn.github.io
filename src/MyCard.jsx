@@ -66,8 +66,10 @@ var MyCard = React.createClass({
       var htmlName = {htmlName: this.props.htmlName};
       // tag标签
       var tagNode = this.props.tagType.map(function(v,k){
+		  // 类型标签的需要放到一个对象中，对象名为react-route中的地址参数
+		  var type = {type:v};
         return (<span style={{padding:'0 5px',cursor:'pointer'}}>
-                  {v}
+  				  <MyLinkButton label={v} location="directory" type='typeTag' params={type}/>
                 </span>
           )
       })
