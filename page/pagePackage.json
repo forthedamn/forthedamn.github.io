@@ -1,4 +1,6 @@
 [
+{"htmlName": "20160308","cardTitle": "webpack-babel-react配置 for babel6",
+"cardSubtitle": "by xin","cardAbstract": "在webpack中使用babel-loader在react中进行es2015的代码编写","tagType":["Javascript"]},
 {"htmlName": "20151225","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript中的静态属性",
 "cardSubtitle": "by xin","cardAbstract": "静态属性这个东西很少在Javascript中提到，多用于C和JAVA中，但是了解静态属性在JS中运用，能更深入的了解这门语言","tagType":["Javascript"]},
 {"htmlName": "20151206","imgTitle": "","imgSubtitle": "...","imgSrc":"","cardTitle": "Javascript中的请求委托和抽象类的模拟",
