@@ -1019,33 +1019,34 @@ body .markdown-body
 一篇关于Javascript事件队列介绍很详细的文章：<br />
 <a href="http://www.alloyteam.com/2015/10/turning-to-javascript-series-from-settimeout-said-the-event-loop-model/">从setTimeout说事件循环模型</a></p>
 <p>几段有趣的代码片段:</p>
-<p>```javascript<br />
-A：<br />
-setTimeout(function(){<br />
-    console.log(1);<br />
-    var link = document.getElementById(&lsquo;link&rsquo;);<br />
-    link.style.backgroundColor = &ldquo;red&rdquo;<br />
-    var d =new Date()<br />
-    while(new Date()-d&lt;2000){};<br />
-    },0);</p>
-<p>B：<br />
-var start = new Date;<br />
-setTimeout(function(){<br />
-console.log(&lsquo;fn1&rsquo;);<br />
-}, 20);<br />
-setTimeout(function(){<br />
-console.log(&lsquo;fn2&rsquo;);<br />
-}, 30);<br />
-setTimeout(function(){<br />
-console.log(&lsquo;another fn2&rsquo;);<br />
-}, 30);<br />
-setTimeout(function(){<br />
-console.log(&lsquo;fn3&rsquo;);<br />
-}, 10);<br />
-console.log(&lsquo;start while&rsquo;);<br />
-while (new Date - start &lt; 1000) {};<br />
-console.log(&lsquo;end while&rsquo;);<br />
-``</p>
+<pre><code class="javascript">A：
+setTimeout(function(){
+    console.log(1);
+    var link = document.getElementById('link');
+    link.style.backgroundColor = &quot;red&quot;
+    var d =new Date()
+    while(new Date()-d&lt;2000){};
+    },0);
+
+B：
+var start = new Date;
+setTimeout(function(){
+console.log('fn1');
+}, 20);
+setTimeout(function(){
+console.log('fn2');
+}, 30);
+setTimeout(function(){
+console.log('another fn2');
+}, 30);
+setTimeout(function(){
+console.log('fn3');
+}, 10);
+console.log('start while');
+while (new Date - start &lt; 1000) {};
+console.log('end while');
+</code></pre>
+
 <hr />
 <p>A段代码运行结果：<br />
 立即打印1<br />
