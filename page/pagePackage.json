@@ -1,4 +1,6 @@
 [
+{"htmlName": "20160324","cardTitle": "关于Javascript事件队列",
+"cardSubtitle": "by xin","cardAbstract": "关于Javascript事件队列","tagType":["Javascript"]},
 {"htmlName": "20160312","cardTitle": "webpack热更新————webpack-dev-server 配置",
 "cardSubtitle": "by xin","cardAbstract": "使用webpack实现热更新","tagType":["工具"]},
 {"htmlName": "20160308","cardTitle": "webpack-babel-react配置 for babel6",
